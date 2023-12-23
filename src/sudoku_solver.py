@@ -1,3 +1,4 @@
+import time
 from typing import Optional
 from sudoku import Sudoku
 
@@ -34,7 +35,7 @@ class SudokuSolver:
         self.sudoku.set_cell(row, col, old_value)
         return is_valid
 
-    def solve_backtrack(self):
+    def solve_backtrack(self, socket=None):
         """Solve the sudoku board using the backtracking/recursive approach
 
         This method mutates the board to the solved state
@@ -52,9 +53,32 @@ class SudokuSolver:
             for num in range(1, total_size + 1):
                 if self._is_safe(row, col, num):
                     self.sudoku.set_cell(row, col, num)
+                    if socket is not None:
+                        time.sleep(0.00125)
+                        socket.emit('board_update', {'board': self._format_board_for_js(self.sudoku.get_board())}, namespace='/solve')
                     if solve_backtracking_helper(row, col + 1):
                         return True
                 self.sudoku.set_cell(row, col, None)
+                if socket is not None:
+                    time.sleep(0.00125)
+                    socket.emit('board_update', {'board': self._format_board_for_js(self.sudoku.get_board())}, namespace='/solve')
+
             return False
 
         solve_backtracking_helper(0, 0)
+
+    def _convert_cell_index(self, i: int, j: int) -> int:
+        size = self.sudoku.get_size()
+        new_i = (i // size) * size + j // size
+        new_j = (i - (new_i // size) * size) * size + j - (new_i % size) * size
+        return size ** 2 * new_i + new_j
+
+    def _format_board_for_js(self, board: list[list[int]]) -> list[str]:
+        size = self.sudoku.get_size()
+        new_board = [''] * size ** 4
+        for i in range(size ** 2):
+            for j in range(size ** 2):
+                index = self._convert_cell_index(i, j)
+                new_board[index] = board[i][j]
+
+        return new_board

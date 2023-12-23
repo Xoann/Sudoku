@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a1ea27f-293d-4f63-940b-7a7ee59d04d0" name="Changes" comment="Implemented backtracking solution for solving">
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Sudoku.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sudoku.iml" afterDir="false" />
+    <list default="true" id="5a1ea27f-293d-4f63-940b-7a7ee59d04d0" name="Changes" comment="Setup validator function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sudoku_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sudoku_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sudoku_solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sudoku_solver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +35,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -46,27 +47,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest for test_sudoku.TestSudoku.test_is_invalid.executor": "Run",
-    "Python tests.pytest for test_sudoku.TestSudoku.test_is_valid.executor": "Run",
-    "Python tests.pytest in test_sudoku.py.executor": "Coverage",
-    "Python.main (1).executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.sudoku.executor": "Run",
-    "Python.sudoku_generator.executor": "Run",
-    "Python.sudoku_solver.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.project",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest for test_sudoku.TestSudoku.test_is_invalid.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_sudoku.TestSudoku.test_is_valid.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_sudoku.py.executor&quot;: &quot;Coverage&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sudoku.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sudoku_generator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sudoku_solver.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ironx/OneDrive/Desktop/Sudoku&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyCoverageOptionsProvider">
     <option name="myUseBundledCoveragePy" value="true" />
   </component>
@@ -174,9 +178,6 @@
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -213,10 +214,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
-        <item itemvalue="Python.sudoku" />
         <item itemvalue="Python.sudoku_solver" />
-        <item itemvalue="Python.sudoku_generator" />
-        <item itemvalue="Python tests.pytest in test_sudoku.py" />
       </list>
     </recent_temporary>
   </component>
@@ -237,7 +235,9 @@
       <updated>1703105292384</updated>
       <workItem from="1703105302113" duration="13725000" />
       <workItem from="1703139631363" duration="10364000" />
-      <workItem from="1703264358973" duration="1887000" />
+      <workItem from="1703264358973" duration="2207000" />
+      <workItem from="1703267415627" duration="53000" />
+      <workItem from="1703281330103" duration="16683000" />
     </task>
     <task id="LOCAL-00001" summary="Built basic sudoku class">
       <option name="closed" value="true" />
@@ -263,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703191748456</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Setup validator function">
+      <option name="closed" value="true" />
+      <created>1703267061577</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703267061577</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,13 +292,14 @@
     <MESSAGE value="Built basic sudoku class" />
     <MESSAGE value="Unit tests for sudoku class" />
     <MESSAGE value="Implemented backtracking solution for solving" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented backtracking solution for solving" />
+    <MESSAGE value="Setup validator function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setup validator function" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Sudoku$pytest_for_test_sudoku_TestSudoku_test_is_valid.coverage" NAME="pytest for test_sudoku.TestSudoku.test_is_valid Coverage Results" MODIFIED="1703120156106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Sudoku$main.coverage" NAME="main Coverage Results" MODIFIED="1703105309624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Sudoku$pytest_in_test_sudoku_py.coverage" NAME="pytest in test_sudoku.py Coverage Results" MODIFIED="1703121392695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Sudoku$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1703266228437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Sudoku$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1703365113675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Sudoku$pytest_for_test_sudoku_TestSudoku_test_is_invalid.coverage" NAME="pytest for test_sudoku.TestSudoku.test_is_invalid Coverage Results" MODIFIED="1703120172595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
