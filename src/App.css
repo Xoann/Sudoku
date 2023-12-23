@@ -1,0 +1,81 @@
+:root {
+  --background: #100b0f;
+  --light: #eee;
+  --selected-tile: rgba(52, 189, 235, 0.4);
+  --validate: #6eda59;
+  --solve: #ff9b00;
+  --invalid: #b33a1f
+}
+
+* {
+  user-select: none;
+}
+
+.app {
+  background-color: var(--background);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  color: var(--light);
+  font-size: 36px;
+  font-family: sans-serif;
+}
+
+.btn {
+  border-radius: 100px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 300ms ease;
+  position: relative;
+}
+
+.btn:hover {
+  transform: scale(103%);
+}
+
+
+.validate-button {
+  background-color: var(--validate);
+}
+
+.solve-button {
+  background-color: var(--solve);
+}
+
+.notice {
+  display: none;
+  font-size: 14px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.valid .valid-notice {
+  display: block;
+  color: var(--validate);
+}
+
+.valid .invalid-notice {
+  display: none;
+}
+
+.invalid .valid-notice {
+  display: none;
+}
+.invalid .invalid-notice {
+  display: block;
+  color: var(--invalid);
+}

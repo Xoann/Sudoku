@@ -1,0 +1,17 @@
+:root {
+    --board_size: 3
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(var(--board_size), 1fr);
+    grid-template-rows: repeat(var(--board_size), 1fr);
+    border: solid 3px var(--light)
+}
+
+.sub-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--board_size), 1fr);
+    grid-template-rows: repeat(var(--board_size), 1fr);
+    border: solid 3px var(--light)
+}
