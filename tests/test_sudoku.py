@@ -1,4 +1,5 @@
 import unittest
+
 from src.sudoku import Sudoku
 
 
@@ -18,11 +19,31 @@ class TestSudoku(unittest.TestCase):
             ]
         )
 
+    def test_print(self):
+        string_rep = self.sudoku.__str__()
+        expected_string = ("|5|3| | |7| | | | |\n|6| | |1|9|5| | | |\n| |9|8| | | | |6| |\n|8| | | |6| | | |3|\n|4| | "
+                           "|8| |3| | |1|\n|7| | | |2| | | |6|\n| |6| | | | |2|8| |\n| | | |4|1|9| | |5|\n| | | | |8| "
+                           "| |7|9|\n")
+        self.assertEqual(string_rep, expected_string)
+
+    def test_empty_init(self):
+        expected_board = [[None] * 9 for _ in range(9)]
+        sudoku = Sudoku()
+        self.assertEqual(sudoku.get_board(), expected_board)
+
     def test_is_valid(self):
         self.assertTrue(self.sudoku.is_valid())
 
-    def test_is_invalid(self):
+    def test_is_invalid_row_dupe(self):
         self.sudoku.set_cell(0, 1, 5)
+        self.assertFalse(self.sudoku.is_valid())
+
+    def test_is_invalid_col_dupe(self):
+        self.sudoku.set_cell(1, 0, 5)
+        self.assertFalse(self.sudoku.is_valid())
+
+    def test_is_invalid_box_dupe(self):
+        self.sudoku.set_cell(1, 1, 5)
         self.assertFalse(self.sudoku.is_valid())
 
     def test_set_cell_valid(self):

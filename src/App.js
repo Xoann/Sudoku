@@ -3,6 +3,7 @@ import './App.css';
 import {useEffect, useState} from "react";
 import io from 'socket.io-client';
 import tile from "./Tile";
+import Dropdown from "./Dropdown";
 
 let socket = io('http://localhost:5000/solve')
 
@@ -10,9 +11,14 @@ function App() {
     const size = 3
     const [boardState, setBoardState] = useState(Array(size ** 4).fill(''))
     const [validBoard, setValidBoard] = useState(null)
+    const [algorithm, setAlgorithm] = useState('backtrack')
 
     const handleBoardStateChange = (newState) => {
         setBoardState(newState)
+    }
+
+    const handleAlgorithmChange = (newAlgo) => {
+        setAlgorithm(newAlgo)
     }
 
     const sendBoardToValidate = async (data) => {
@@ -49,12 +55,15 @@ function App() {
 
     const handleSolveClick = () => {
         socket.connect()
-        socket.emit('solve', boardState)
+        socket.emit('solve', boardState, algorithm)
     }
 
-    window.addEventListener('keypress', (event) => {
+    const handleClearClick = () => {
+        const emptyBoard = Array(size ** 4).fill('')
+        setBoardState(emptyBoard)
+    }
 
-    })
+
 
   return (
     <div className="app">
@@ -70,10 +79,21 @@ function App() {
                 <span className={`valid-notice notice`}>Valid</span>
                 <span className={`invalid-notice notice`}>Invalid</span>
             </div>
+            <div className={"btn generate-button"}>
+                <span>Generate</span>
+            </div>
+            <Dropdown
+                setAlgo={handleAlgorithmChange}
+            />
             <div
                 onClick={handleSolveClick}
                 className={"btn solve-button"}>
                 <span>Solve</span>
+            </div>
+            <div
+                onClick={handleClearClick}
+                className={"btn clear-button"}>
+                <span>Clear</span>
             </div>
         </div>
     </div>

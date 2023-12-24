@@ -45,12 +45,14 @@ def validate():
 
 
 @socketio.on('solve', namespace='/solve')
-def solve(board: list[str]):
+def solve(board: list[str], algorithm: str):
     try:
         formatted_board = format_board_data(board)
         sudoku = Sudoku(board=formatted_board)
         sudoku_solver = SudokuSolver(sudoku)
-        sudoku_solver.solve_backtrack(socket=socketio)
+
+        if not algorithm or algorithm == "backtrack":
+            sudoku_solver.solve_backtrack(socket=socketio)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

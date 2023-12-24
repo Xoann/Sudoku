@@ -2,9 +2,13 @@
   --background: #100b0f;
   --light: #eee;
   --selected-tile: rgba(52, 189, 235, 0.4);
-  --validate: #6eda59;
+  --validate: #3a9129;
   --solve: #ff9b00;
-  --invalid: #b33a1f
+  --invalid: #b33a1f;
+  --clear: #b33a1f;
+  --algo: rgb(187, 0, 255);
+  --algo-dark: rgb(134, 2, 182);
+  --generate: #237761;
 }
 
 * {
@@ -33,6 +37,7 @@
 .btn {
   border-radius: 100px;
   width: 180px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +47,7 @@
 }
 
 .btn:hover {
-  transform: scale(103%);
+  /*transform: scale(103%);*/
 }
 
 
@@ -50,8 +55,20 @@
   background-color: var(--validate);
 }
 
+.generate-button {
+  background-color: var(--generate);
+}
+
 .solve-button {
   background-color: var(--solve);
+}
+
+.clear-button {
+  background-color: var(--clear);
+}
+
+.algorithms-button {
+  background-color: var(--algo);
 }
 
 .notice {
